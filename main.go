@@ -38,10 +38,11 @@ var (
 	timeout    int
 	outputFile string
 	directory  string
+	provider   string
 )
 
-func initializeProviders() {
-	raw, err := ioutil.ReadFile("providers.json")
+func initializeProviders(providerpath string) {
+	raw, err := ioutil.ReadFile(providerpath)
 	if err != nil {
 		fmt.Println(err.Error())
 		os.Exit(1)
@@ -94,7 +95,7 @@ func parseArguments() {
 	flag.IntVar(&timeout, "timeout", 10, "Seconds to wait before timeout")
 	flag.StringVar(&outputFile, "o", "", "File to write enumeration output to")
 	flag.StringVar(&directory, "d", "", "directory having files of domains")
-	// flag.StringVar(&directory, "d", "", "directory having files of domains")
+	flag.StringVar(&provider, "p", "", "Path of the providers file")
 
 	flag.Parse()
 }
@@ -107,13 +108,13 @@ func cnameExists(key string) bool {
 			}
 		}
 	}
-
 	return false
 }
 
 func check(target string, TargetCNAME string) {
 	t, body, errs := Get(target, timeout, forceHTTPS)
 	if len(errs) <= 0 {
+		{
 			for _, provider := range Providers {
 				for _, cname := range provider.Cname {
 					if strings.Contains(TargetCNAME, cname) {
@@ -149,6 +150,7 @@ func checker(target string) {
 		log.Printf("Error")
 		os.Exit(1)
 	} else {
+		if cnameExists(TargetCNAME) == true {
 			if verbose == true {
 				log.Printf("[SELECTED] %s => %s", target, TargetCNAME)
 			}
@@ -166,7 +168,15 @@ func main() {
 		os.Exit(1)
 	}
 
-	initializeProviders()
+	if provider == "" {
+		initializeProviders("providers.json")
+	} else {
+		initializeProviders(provider)
+	}
+
+	if hostsList != "" {
+
+	}
 	Hosts, err := readFile(hostsList)
 	if err != nil {
 		fmt.Printf("\nread: %s\n", err)
@@ -186,10 +196,8 @@ func main() {
 				if host == "" {
 					break
 				}
-
 				checker(host)
 			}
-
 			processGroup.Done()
 		}()
 	}
