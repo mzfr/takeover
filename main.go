@@ -41,6 +41,8 @@ var (
 	provider   string
 )
 
+// initializeProviders takes the json files of providers.
+// Accepting the path externally would be nice.s
 func initializeProviders(providerpath string) {
 	raw, err := ioutil.ReadFile(providerpath)
 	if err != nil {
@@ -55,6 +57,7 @@ func initializeProviders(providerpath string) {
 	}
 }
 
+// Read host files and subdomains
 func readFile(file string) (lines []string, err error) {
 	fileHandle, err := os.Open(file)
 	if err != nil {
@@ -100,6 +103,7 @@ func parseArguments() {
 	flag.Parse()
 }
 
+// check if the CNAME is present in the providers.json
 func cnameExists(key string) bool {
 	for _, provider := range Providers {
 		for _, cname := range provider.Cname {
@@ -111,6 +115,7 @@ func cnameExists(key string) bool {
 	return false
 }
 
+// check if the Takeover is possible
 func check(target string, TargetCNAME string) {
 	t, body, errs := Get(target, timeout, forceHTTPS)
 	if len(errs) <= 0 {
@@ -144,6 +149,7 @@ func check(target string, TargetCNAME string) {
 	return
 }
 
+// checker is a controller made for check function
 func checker(target string) {
 	TargetCNAME, err := net.LookupCNAME(target)
 	if err != nil {
