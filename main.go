@@ -33,7 +33,6 @@ var Targets []string
 var (
 	hostsList  string
 	threads    int
-	all        bool
 	verbose    bool
 	forceHTTPS bool
 	timeout    int
@@ -90,7 +89,6 @@ func Get(url string, timeout int, https bool) (resp gorequest.Response, body str
 func parseArguments() {
 	flag.IntVar(&threads, "t", 20, "Number of threads to use")
 	flag.StringVar(&hostsList, "l", "", "List of hosts to check takeovers on")
-	flag.BoolVar(&all, "a", false, "Check all hosts regardless of CNAME")
 	flag.BoolVar(&verbose, "v", false, "Show verbose output")
 	flag.BoolVar(&forceHTTPS, "https", false, "Force HTTPS connections")
 	flag.IntVar(&timeout, "timeout", 10, "Seconds to wait before timeout")
@@ -116,17 +114,6 @@ func cnameExists(key string) bool {
 func check(target string, TargetCNAME string) {
 	t, body, errs := Get(target, timeout, forceHTTPS)
 	if len(errs) <= 0 {
-		if TargetCNAME == "all" {
-			for _, provider := range Providers {
-				for _, response := range provider.Response {
-					if strings.Contains(body, response) == true {
-						fmt.Printf("\n[\033[31;1;4m%s\033[0m] Takeover Possible At %s ", provider.Name, target)
-						return
-					}
-				}
-			}
-		} else {
-			// This is a less false positives way
 			for _, provider := range Providers {
 				for _, cname := range provider.Cname {
 					if strings.Contains(TargetCNAME, cname) {
@@ -162,16 +149,10 @@ func checker(target string) {
 		log.Printf("Error")
 		os.Exit(1)
 	} else {
-		if all != true && cnameExists(TargetCNAME) == true {
 			if verbose == true {
 				log.Printf("[SELECTED] %s => %s", target, TargetCNAME)
 			}
 			check(target, TargetCNAME)
-		} else if all == true {
-			if verbose == true {
-				log.Printf("[all] %s ", target)
-			}
-			check(target, "all")
 		}
 	}
 }
