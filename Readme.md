@@ -12,3 +12,21 @@ __Why not use one liner?__
 
 yeah I know that I can write a one liner combined with tools like nuclei or subjack but I kind don't want to :)
 
+
+## Usage
+
+The usage is same as it was.
+
+* For hunting on the same list:
+
+```
+takeover -l <subdomain-list.txt>
+```
+
+* For testing a directory with all the subdomain list
+
+```
+takeover -d <directory>
+```
+
+Make sure the directory doesn't have any other file otherwise the process will take extra time.
