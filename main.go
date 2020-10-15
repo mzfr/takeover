@@ -165,24 +165,7 @@ func checker(target string) {
 	}
 }
 
-func main() {
-	parseArguments()
-
-	if hostsList == "" && directory == "" {
-		fmt.Printf("SubOver: No hosts list or directory specified for testing!")
-		fmt.Printf("\nUse -h for usage options\n")
-		os.Exit(1)
-	}
-
-	if provider == "" {
-		initializeProviders("providers.json")
-	} else {
-		initializeProviders(provider)
-	}
-
-	if hostsList != "" {
-
-	}
+func startLooking(hostsList string) {
 	Hosts, err := readFile(hostsList)
 	if err != nil {
 		fmt.Printf("\nread: %s\n", err)
@@ -214,5 +197,39 @@ func main() {
 
 	close(hosts)
 	processGroup.Wait()
+
+}
+
+func main() {
+	parseArguments()
+	var files []string
+
+	if hostsList == "" && directory == "" {
+		fmt.Printf("SubOver: No hosts list or directory specified for testing!")
+		fmt.Printf("\nUse -h for usage options\n")
+		os.Exit(1)
+	}
+
+	if provider == "" {
+		initializeProviders("providers.json")
+	} else {
+		initializeProviders(provider)
+	}
+
+	if directory != "" {
+		files, err := ioutil.ReadDir(directory)
+		if err != nil {
+			fmt.Println("Could read the directory")
+		}
+
+		for _, f := range files {
+			filename := fmt.Sprintf("%s/%s", directory, f.Name())
+			startLooking(filename)
+		}
+	}
+
+	if hostsList != "" {
+		startLooking(hostsList)
+	}
 
 }
