@@ -161,8 +161,7 @@ func check(target string, TargetCNAME string) {
 func checker(target string) {
 	TargetCNAME, err := net.LookupCNAME(target)
 	if err != nil {
-		log.Printf("Error")
-		os.Exit(1)
+		fmt.Printf("%s have no address associated with hostname", target)
 	} else {
 		if cnameExists(TargetCNAME) == true {
 			if verbose == true {
@@ -212,7 +211,7 @@ func main() {
 	parseArguments()
 
 	if hostsList == "" && directory == "" {
-		fmt.Printf("SubOver: No hosts list or directory specified for testing!")
+		fmt.Printf("takeover: No hosts list or directory specified for testing!")
 		fmt.Printf("\nUse -h for usage options\n")
 		os.Exit(1)
 	}
