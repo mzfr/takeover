@@ -74,6 +74,14 @@ func readFile(file string) (lines []string, err error) {
 	return lines, nil
 }
 
+func fileExists(filename string) bool {
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
+}
+
 // Get is used to send a request to the server
 func Get(url string, timeout int, https bool) (resp gorequest.Response, body string, errs []error) {
 	if https == true {
@@ -210,10 +218,13 @@ func main() {
 		os.Exit(1)
 	}
 
-	if provider == "" {
+	if provider != "" && fileExists(provider) {
+		initializeProviders(provider)
+	} else if fileExists("providers.json") {
 		initializeProviders("providers.json")
 	} else {
-		initializeProviders(provider)
+		fmt.Println("Can't find the Providers.json")
+		os.Exit(1)
 	}
 
 	if directory != "" {
