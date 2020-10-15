@@ -91,7 +91,7 @@ func Get(url string, timeout int, https bool) (resp gorequest.Response, body str
 	}
 
 	resp, body, errs = gorequest.New().TLSClientConfig(&tls.Config{InsecureSkipVerify: true}).
-		timeout(time.Duration(timeout)*time.Second).Get(url).
+		Timeout(time.Duration(timeout)*time.Second).Get(url).
 		Set("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0").
 		End()
 
@@ -125,7 +125,7 @@ func cnameExists(key string) bool {
 
 // check if the Takeover is possible
 func check(target string, TargetCNAME string) {
-	t, body, errs := Get(target, timeout, forceHTTPS)
+	_, body, errs := Get(target, timeout, forceHTTPS)
 	if len(errs) <= 0 {
 		{
 			for _, provider := range Providers {
@@ -166,7 +166,7 @@ func checker(target string) {
 	} else {
 		if cnameExists(TargetCNAME) == true {
 			if verbose == true {
-				log.Printf("[SELECTED] %s => %s", target, TargetCNAME)
+				fmt.Printf("[SELECTED] %s => %s", target, TargetCNAME)
 			}
 			check(target, TargetCNAME)
 		}
@@ -210,7 +210,6 @@ func startLooking(hostsList string) {
 
 func main() {
 	parseArguments()
-	var files []string
 
 	if hostsList == "" && directory == "" {
 		fmt.Printf("SubOver: No hosts list or directory specified for testing!")
@@ -228,6 +227,7 @@ func main() {
 	}
 
 	if directory != "" {
+		fmt.Println("--> Got a directory of hostlists!!")
 		files, err := ioutil.ReadDir(directory)
 		if err != nil {
 			fmt.Println("Could read the directory")
@@ -238,8 +238,8 @@ func main() {
 			startLooking(filename)
 		}
 	}
-
 	if hostsList != "" {
+		fmt.Println("--> Got Single hostlist!!")
 		startLooking(hostsList)
 	}
 
