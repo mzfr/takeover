@@ -21,6 +21,24 @@ __Can I use different Providers list?__
 Currently no, but I plan to add this feature so like you can use file from subjack or if you make your own.
 
 
+## Options
+
+```
+  -d string
+        directory having files of domains
+  -https
+        Force HTTPS connections
+  -l string
+        List of hosts to check takeovers on
+  -p string
+        Path of the providers file
+  -t int
+        Number of threads to use (default 20)
+  -timeout int
+        Seconds to wait before timeout (default 10)
+  -v    Show verbose output
+```
+
 ## Usage
 
 The usage is same as it was.
