@@ -226,7 +226,6 @@ func main() {
 	}
 
 	if directory != "" {
-		fmt.Println("--> Got a directory of hostlists!!")
 		files, err := ioutil.ReadDir(directory)
 		if err != nil {
 			fmt.Println("Could read the directory")
@@ -238,7 +237,6 @@ func main() {
 		}
 	}
 	if hostsList != "" {
-		fmt.Println("--> Got Single hostlist!!")
 		startLooking(hostsList)
 	}
 
