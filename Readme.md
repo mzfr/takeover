@@ -1,6 +1,6 @@
-# SubOver 2.0
+# takeover
 
-Since [Ice3man543](https://github.com/Ice3man543) decided to discontinue the dvelopment of their tool i.e SubOver, I thought it would be nice to revive this tool.
+Since [Ice3man543](https://github.com/Ice3man543) decided to discontinue the devlopment of their tool i.e SubOver, I thought it would be nice to revive this tool.
 
 ## FAQs
 
