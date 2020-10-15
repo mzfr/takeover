@@ -12,6 +12,10 @@ __Why not use one liner?__
 
 yeah I know that I can write a one liner combined with tools like nuclei or subjack but I kind don't want to :)
 
+__Why not use subjack?__
+
+I don't know why but I've had issue in installing subjack on digital ocean VPN. Whenever I try to pull it using `go get` it just hangs there. Also I am not sure if its under active development cause I noticed there are loads of pending issues and Pull requests.
+
 __Can I use different Providers list?__
 
 Currently no, but I plan to add this feature so like you can use file from subjack or if you make your own.
