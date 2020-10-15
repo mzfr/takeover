@@ -74,6 +74,14 @@ func readFile(file string) (lines []string, err error) {
 	return lines, nil
 }
 
+func fileExists(filename string) bool {
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
+}
+
 // Get is used to send a request to the server
 func Get(url string, timeout int, https bool) (resp gorequest.Response, body string, errs []error) {
 	if https == true {
@@ -83,7 +91,7 @@ func Get(url string, timeout int, https bool) (resp gorequest.Response, body str
 	}
 
 	resp, body, errs = gorequest.New().TLSClientConfig(&tls.Config{InsecureSkipVerify: true}).
-		timeout(time.Duration(timeout)*time.Second).Get(url).
+		Timeout(time.Duration(timeout)*time.Second).Get(url).
 		Set("User-Agent", "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/60.0").
 		End()
 
@@ -117,7 +125,7 @@ func cnameExists(key string) bool {
 
 // check if the Takeover is possible
 func check(target string, TargetCNAME string) {
-	t, body, errs := Get(target, timeout, forceHTTPS)
+	_, body, errs := Get(target, timeout, forceHTTPS)
 	if len(errs) <= 0 {
 		{
 			for _, provider := range Providers {
@@ -158,31 +166,14 @@ func checker(target string) {
 	} else {
 		if cnameExists(TargetCNAME) == true {
 			if verbose == true {
-				log.Printf("[SELECTED] %s => %s", target, TargetCNAME)
+				fmt.Printf("[SELECTED] %s => %s", target, TargetCNAME)
 			}
 			check(target, TargetCNAME)
 		}
 	}
 }
 
-func main() {
-	parseArguments()
-
-	if hostsList == "" && directory == "" {
-		fmt.Printf("SubOver: No hosts list or directory specified for testing!")
-		fmt.Printf("\nUse -h for usage options\n")
-		os.Exit(1)
-	}
-
-	if provider == "" {
-		initializeProviders("providers.json")
-	} else {
-		initializeProviders(provider)
-	}
-
-	if hostsList != "" {
-
-	}
+func startLooking(hostsList string) {
 	Hosts, err := readFile(hostsList)
 	if err != nil {
 		fmt.Printf("\nread: %s\n", err)
@@ -214,5 +205,42 @@ func main() {
 
 	close(hosts)
 	processGroup.Wait()
+
+}
+
+func main() {
+	parseArguments()
+
+	if hostsList == "" && directory == "" {
+		fmt.Printf("SubOver: No hosts list or directory specified for testing!")
+		fmt.Printf("\nUse -h for usage options\n")
+		os.Exit(1)
+	}
+
+	if provider != "" && fileExists(provider) {
+		initializeProviders(provider)
+	} else if fileExists("providers.json") {
+		initializeProviders("providers.json")
+	} else {
+		fmt.Println("Can't find the Providers.json")
+		os.Exit(1)
+	}
+
+	if directory != "" {
+		fmt.Println("--> Got a directory of hostlists!!")
+		files, err := ioutil.ReadDir(directory)
+		if err != nil {
+			fmt.Println("Could read the directory")
+		}
+
+		for _, f := range files {
+			filename := fmt.Sprintf("%s/%s", directory, f.Name())
+			startLooking(filename)
+		}
+	}
+	if hostsList != "" {
+		fmt.Println("--> Got Single hostlist!!")
+		startLooking(hostsList)
+	}
 
 }

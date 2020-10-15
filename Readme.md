@@ -1,8 +1,8 @@
-# SubOver 2.0
+# takeover
 
-Since [Ice3man543](https://github.com/Ice3man543) decided to discontinue the dvelopment of their tool i.e SubOver, I thought it would be nice to revive this tool.
+Since [Ice3man543](https://github.com/Ice3man543) decided to discontinue the devlopment of their tool i.e SubOver, I thought it would be nice to revive this tool.
 
-## Summary
+## FAQs
 
 __Why?__
 
@@ -12,3 +12,43 @@ __Why not use one liner?__
 
 yeah I know that I can write a one liner combined with tools like nuclei or subjack but I kind don't want to :)
 
+__Can I use different Providers list?__
+
+Currently no, but I plan to add this feature so like you can use file from subjack or if you make your own.
+
+
+## Usage
+
+The usage is same as it was.
+
+* For hunting on the same list:
+
+```
+takeover -l <subdomain-list.txt>
+```
+
+* For testing a directory with all the subdomain list
+
+```
+takeover -d <directory>
+```
+
+Make sure the directory doesn't have any other file otherwise the process will take extra time. Also the tool might crash(I'm still learning golang.)
+
+## Installation
+
+You can download the binary from the release page. Also if you want you can clone this repository and build the binary yourself.
+
+If you have go compiler installed then you can use go get github.com/mzfr/takeover.
+
+__NOTE__: takeover uses `provider.json` file. So either have a file named providers.json in your current working directory  you can provide the path via `-p` flag.
+
+## Acknowledgements and Credits
+
+Thanks to [Ice3man543](https://github.com/Ice3man543) for making [SubOver](https://github.com/Ice3man543/SubOver)
+
+# Support
+
+If you'd like you can buy me some coffee:
+
+<a href="https://www.buymeacoffee.com/mzfr" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" style="height: 51px !important;width: 217px !important;" ></a>
