@@ -161,7 +161,8 @@ func check(target string, TargetCNAME string) {
 func checker(target string) {
 	TargetCNAME, err := net.LookupCNAME(target)
 	if err != nil {
-		fmt.Printf("\n%s have no address associated with hostname", target)
+		// do nothing until colors are added
+		// fmt.Printf("\n%s have no address associated with hostname", target)
 	} else {
 		if cnameExists(TargetCNAME) == true {
 			if verbose == true {
