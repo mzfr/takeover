@@ -18,6 +18,10 @@ jobs:
         uses: actions/setup-go@v2
         with:
           go-version: 1.14
+
+      - name: Install dependencies
+        run: |
+          go get -u github.com/parnurzeal/gorequest
       -
         name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v2
