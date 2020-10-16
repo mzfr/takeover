@@ -136,10 +136,10 @@ func check(target string, TargetCNAME string) {
 								if provider.Name == "cloudfront" {
 									_, body2, _ := Get(target, 120, true)
 									if strings.Contains(body2, response) == true {
-										fmt.Printf("\n[\033[31;1;4m%s\033[0m] Takeover Possible At : %s", provider.Name, target)
+										fmt.Printf("\n [%s] Takeover Possible At : %s", provider.Name, target)
 									}
 								} else {
-									fmt.Printf("\n[\033[31;1;4m%s\033[0m] Takeover Possible At %s with CNAME %s", provider.Name, target, TargetCNAME)
+									fmt.Printf("\n [%s] Takeover Possible At %s with CNAME %s", provider.Name, target, TargetCNAME)
 								}
 							}
 							return
@@ -161,7 +161,7 @@ func check(target string, TargetCNAME string) {
 func checker(target string) {
 	TargetCNAME, err := net.LookupCNAME(target)
 	if err != nil {
-		fmt.Printf("%s have no address associated with hostname", target)
+		fmt.Printf("\n%s have no address associated with hostname", target)
 	} else {
 		if cnameExists(TargetCNAME) == true {
 			if verbose == true {
@@ -228,7 +228,7 @@ func main() {
 	if directory != "" {
 		files, err := ioutil.ReadDir(directory)
 		if err != nil {
-			fmt.Println("Could read the directory")
+			fmt.Println("Could not read the directory")
 		}
 
 		for _, f := range files {
