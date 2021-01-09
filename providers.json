@@ -729,5 +729,196 @@
             "domains.smugmug.com"
         ],
         "response": []
+    },
+    {
+        "name": "Agile CRM",
+        "cname": [
+            "cname.agilecrm.com",
+            "agilecrm.com"
+        ],
+        "response": [
+            "Sorry, this page is no longer available"
+        ]
+    },
+    {
+        "name": "Airee.ru",
+        "cname": [
+            "cdn.airee.com",
+            "airee.com"
+        ],
+        "response": [
+            "If this is your website and you've just created it, try refreshing in a minute"
+        ]
+    },
+    {
+        "name": "Campaign Monitor",
+        "cname": [
+            "campaignmonitor.com"
+        ],
+        "response": [
+            "Trying to access your account?"
+        ]
+    },
+    {
+        "name": "Cargo Collective",
+        "cname": [
+            "cargocollective.com"
+        ],
+        "respomse": [
+            "404 Not Found"
+        ]
+    },
+    {
+        "name": "Discourse",
+        "cname": [
+            "discourse.org"
+        ],
+        "respomse": [
+            ""
+        ]
+    },
+    {
+        "name": "Fly.io",
+        "cname": [
+            "fly.io"
+        ],
+        "respomse": [
+            "404 Not Found"
+        ]
+    },
+    {
+        "name": "Gemfury",
+        "cname": [
+            "gemfury.com"
+        ],
+        "respomse": [
+            "404: This page could not be found."
+        ]
+    },
+    {
+        "name": "Help Juice",
+        "cname": [
+            "helpjuice.com"
+        ],
+        "respomse": [
+            "We could not find what you're looking for."
+        ]
+    },
+    {
+        "name": "Help Scout",
+        "cname": [
+            "helpscout.com"
+        ],
+        "respomse": [
+            "No settings were found for this company:"
+        ]
+    },
+    {
+        "name": "Kinsta",
+        "cname": [
+            "kinsta.com"
+        ],
+        "respomse": [
+            "No Site For Domain"
+        ]
+    },
+    {
+        "name": "LaunchRock",
+        "cname": [
+            "launchrock.com"
+        ],
+        "respomse": [
+            "It looks like you may have taken a wrong turn somewhere. Don't worry...it happens to all of us."
+        ]
+    },
+    {
+        "name": "Microsoft Azure",
+        "cname": [
+            "cloudapp.net",
+            "cloudapp.azure.com",
+            "azurewebsites.net",
+            "blob.core.windows.net",
+            "cloudapp.azure.com",
+            "azure-api.net",
+            "azurehdinsight.net",
+            "azureedge.net",
+            "azurecontainer.io",
+            "database.windows.net",
+            "azuredatalakestore.net",
+            "search.windows.net",
+            "azurecr.io",
+            "redis.cache.windows.net",
+            "azurehdinsight.net",
+            "servicebus.windows.net",
+            "visualstudio.com"
+        ],
+        "respomse": [
+            ""
+        ]
+    },
+    {
+        "name": "Ngrok",
+        "cname": [
+            "ngrok.io"
+        ],
+        "respomse": [
+            "Tunnel *.ngrok.io not found"
+        ]
+    },
+    {
+        "name": "SmartJobBoard",
+        "cname": [
+            " smartjobboard.com",
+            "mysmartjobboard.com"
+        ],
+        "respomse": [
+            "This job board website is either expired or its domain name is invalid."
+        ]
+    },
+    {
+        "name": "Strikingly",
+        "cname": [
+            "strikinglydns.com",
+            "strikingly.com"
+        ],
+        "respomse": [
+            "page not found"
+        ]
+    },
+    {
+        "name": "Uberflip",
+        "cname": [
+            "uberflip.com"
+        ],
+        "respomse": [
+            "Non-hub domain, The URL you've accessed does not provide a hub."
+        ]
+    },
+    {
+        "name": "Uptimerobot",
+        "cname": [
+            "Uptimerobot.com"
+        ],
+        "respomse": [
+            "page not found"
+        ]
+    },
+    {
+        "name": "UserVoice",
+        "cname": [
+            "uservoice.com"
+        ],
+        "respomse": [
+            "This UserVoice subdomain is currently available!"
+        ]
+    },
+    {
+        "name": "Worksites",
+        "cname": [
+            "worksites.net"
+        ],
+        "respomse": [
+            "Hello! Sorry, but the website you&rsquo;re looking for doesn&rsquo;t exist."
+        ]
     }
 ]
