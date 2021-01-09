@@ -401,14 +401,14 @@
         "name": "azure",
         "cname": [
             "azurewebsites.net",
-            ".azurewebsites.net",
-            ".cloudapp.net",
-            ".cloudapp.azure.com",
-            ".trafficmanager.net",
-            ".blob.core.windows.net",
-            ".azure-api.net",
-            ".azurehdinsight.net",
-            ".azureedge.net"
+            "azurewebsites.net",
+            "cloudapp.net",
+            "cloudapp.azure.com",
+            "trafficmanager.net",
+            "blob.core.windows.net",
+            "azure-api.net",
+            "azurehdinsight.net",
+            "azureedge.net"
         ],
         "response": [
             "404 Web Site not found"
