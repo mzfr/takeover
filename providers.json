@@ -747,7 +747,9 @@
             "airee.com"
         ],
         "response": [
-            "If this is your website and you've just created it, try refreshing in a minute"
+            "If this is your website and you've just created it, try refreshing in a minute",
+            "Ошибка 402. Сервис Айри.рф не оплачен",
+            "Сайт xyz.xyz.ru. , на который вы заходите, не оплатил сервис Айри.рф. Доступ к сайту временно невозможен."
         ]
     },
     {
@@ -919,6 +921,33 @@
         ],
         "respomse": [
             "Hello! Sorry, but the website you&rsquo;re looking for doesn&rsquo;t exist."
+        ]
+    },
+    {
+        "name": "helprace",
+        "cname": [
+            "helprace.com"
+        ],
+        "response": [
+            "Alias not configured!"
+        ]
+    },
+    {
+        "name": "canny",
+        "cname": [
+            "canny.io"
+        ],
+        "response": [
+            "There is no such company. Did you enter the right URL?"
+        ]
+    },
+    {
+        "name": "frontify",
+        "cname": [
+            "frontify.com"
+        ],
+        "response": [
+            "404 - Page not found. Oops... look like you got lost."
         ]
     }
 ]
